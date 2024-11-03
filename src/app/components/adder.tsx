@@ -10,14 +10,25 @@ export default function Adder() {
 
   function add(inputDelimiter: string, inputNumbers: string):  number{
     let res: number = 0;
+    const negativeNums = []
     const lines: string[]|undefined = inputNumbers?.split('\n');
     if(lines){
       for(const i in lines){
         const nums= lines[i]?.split(inputDelimiter)
         for(const j in nums) {
-          res+=Number(nums[j])
+          const num = Number(nums[j])
+          if(isNaN(num))
+            window.alert(`Uh Oh! seems the input is not quite right`)
+          else if (num<0)
+            negativeNums.push(num)
+          else
+            res+=num
         }
       }
+    }
+    if(negativeNums.length>0){
+      window.alert(`negative numbers not allowed: ${negativeNums}`)
+      res=0;
     }
     return res;
   }
@@ -37,7 +48,12 @@ export default function Adder() {
           <input data-testid='delimiter' type='text' className= 'appearance-none w-4/5 self-center bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-10' placeholder="Enter the Delimiter" ref={delimiterRef}/>
           <textarea data-testid='numbersString' className='appearance-none w-4/5 self-center bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-10' placeholder="Enter the numbers separated by delimiter" ref={inputNumbersRef}/>
         </div>
-        <button data-testid='submitButton' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-10' type='submit' onClick={()=>{if(delimiterRef?.current?.value && inputNumbersRef?.current?.value) setSum(add(delimiterRef?.current?.value, inputNumbersRef?.current?.value))}}>Submit</button>
+        <button data-testid='submitButton' className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mb-10' type='submit' onClick={()=>{
+          if(delimiterRef?.current?.value && inputNumbersRef?.current?.value) {
+             setSum(add(delimiterRef?.current?.value, inputNumbersRef?.current?.value))
+          } else {
+              window.alert(`Uh Oh! seems the input is not quite right`)
+          }}}>Submit</button>
         <div data-testid='result' className='font-bold text-white lg:text-xl'>
           Sum is: {sum}
         </div>
