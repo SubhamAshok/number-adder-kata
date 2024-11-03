@@ -2,12 +2,15 @@
  * @jest-environment jsdom
  */
 import { render, screen } from "@testing-library/react";
-import Adder from "src/app/components/adder";
+import Home from "src/app/page";
 
-describe("Home", () => {
-  it("renders a heading", () => {
-    render(<Adder />);
-    const heading = screen.getByText(/Hello!/i);
-    expect(heading).toBeInTheDocument();
+describe("Home component", () => {
+  it("renders homepage", () => {
+    render(<Home />);
+    expect(screen.getByText(/String Adder/i)).toBeInTheDocument();
+    expect(screen.getByTestId("result")).toBeInTheDocument();
+    expect(screen.getByTestId("delimiter")).toBeInTheDocument();
+    expect(screen.getByTestId("numbersString")).toBeInTheDocument();
+    expect(screen.getByTestId("submitButton")).toBeInTheDocument();
   });
 });
