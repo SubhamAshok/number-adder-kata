@@ -42,7 +42,7 @@ export default function Adder() {
         <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Welcome to <br/></span> String Adder.</h1>
         <p className="mb-10 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">A tool that adds up numbers separated by any delimiter.</p>
         <h4 className="mb-6 justify-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 justify-self-center dark:text-white-400">
-          <p className='font-bold text-white text-xl lg:text-xl'>How to use? </p>
+          <p className='font-bold dark:text-white text-xl lg:text-xl'>How to use? </p>
           <ol className='list-decimal text-sm' >
             <li>Provide the delimiter/separator in the first input.</li>
             <li>In the second box, input the numbers separated by the delimiter.</li>
@@ -60,7 +60,7 @@ export default function Adder() {
             window.alert(`Uh Oh! seems the input is not quite right`)
             setSum(0);
           }}}>Submit</button>
-        <div data-testid='result' className='font-bold text-white lg:text-xl'>
+        <div data-testid='result' className='font-bold dark:text-white lg:text-xl'>
           Sum is: {sum}
         </div>
       </div>
